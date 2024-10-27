@@ -2,17 +2,12 @@
 The final project repo for Mr. Plate's class.
 
 # Prerequisites
-- ### Install Tailwind Locally
 
-tailwind
-
->*not sure if this one is needed, but I've only
-ever done this with npm based projects and idk if
-github will take my npm installed files*
+## Tailwind & FontAwesome
 
 run: `npm install` in terminal
 
-- ### Update Python
+## Update Python
 
 >*You'll probably need to do this because I updated the
 project to the latest python.*
@@ -40,7 +35,7 @@ run `python.exe -m pip install --upgrade pip` in terminal
 > is what I want to do. Again, if the group decides not to, 
 > we can change this.
 
-## Tasks
+### Tasks
 
 - [x] Create models and db
 - [ ] Create html files and agree on design
@@ -55,7 +50,7 @@ run `python.exe -m pip install --upgrade pip` in terminal
 - [ ] Attain 80% test code coverage (work on this throughout)
 
 
-## Team Members
+### Team Members
 - **Josef Bausch**
 - **Caleb Clark**
 - **Jerica Hanna**
