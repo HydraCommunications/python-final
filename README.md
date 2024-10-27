@@ -8,9 +8,9 @@ tailwind
 
 >*not sure if this one is needed, but I've only
 ever done this with npm based projects and idk if
-github will take my pip installed files*
+github will take my npm installed files*
 
-run: `python -m pip install Flask` in terminal
+run: `npm install` in terminal
 
 - ### Update Python
 
