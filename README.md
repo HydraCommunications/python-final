@@ -4,6 +4,8 @@ The final project repo for Mr. Plate's class.
 # Prerequisites
 - ### Install Tailwind Locally
 
+tailwind
+
 >*not sure if this one is needed, but I've only
 ever done this with npm based projects and idk if
 github will take my pip installed files*
@@ -37,3 +39,25 @@ run `python.exe -m pip install --upgrade pip` in terminal
 > tired of writing 700 Billion reused css classes, so tailwind
 > is what I want to do. Again, if the group decides not to, 
 > we can change this.
+
+## Tasks
+
+- [x] Create models and db
+- [ ] Create html files and agree on design
+- [ ] Make home page
+- [ ] Make room page
+- [ ] Make edit-room page
+- [ ] Make room details page
+- [ ] Make supply page
+- [ ] Make supply details page
+- [ ] Implement calculations
+- [ ] Create seaborn graph
+- [ ] Attain 80% test code coverage (work on this throughout)
+
+
+## Team Members
+- **Josef Bausch**
+- **Caleb Clark**
+- **Jerica Hanna**
+- **Aiden Conrad**
+- **Martin Bahena**
