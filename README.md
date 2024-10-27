@@ -55,4 +55,4 @@ run `python.exe -m pip install --upgrade pip` in terminal
 - **Caleb Clark**
 - **Jerica Hanna**
 - **Aiden Conrad**
-- **Martin Bahena**
+- **Martin Bahena Cortez**
