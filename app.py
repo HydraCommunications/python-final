@@ -8,29 +8,29 @@ def hello_world():
     return render_template('home.html')
 
 
-@app.route('/room.html')
+@app.route('/room')
 def room():
-    return
+    return render_template('room.html')
 
 
-@app.route('/edit_room.html')
+@app.route('/edit_room')
 def edit_room():
-    return
+    return render_template('edit_room.html')
 
 
-@app.route('/room_details.html')
+@app.route('/room_details')
 def room_details():
-    return
+    return render_template('room_details.html')
 
 
-@app.route('/supply.html')
+@app.route('/supply')
 def supply():
-    return
+    return render_template('supply.html')
 
 
-@app.route('/supply_details.html')
+@app.route('/supply_details')
 def supply_details():
-    return
+    return render_template('supply_details.html')
 
 
 if __name__ == '__main__':
