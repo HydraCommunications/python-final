@@ -15,15 +15,22 @@
             <input type="number" id="surface_area" name="surface_area" step="0.1" required class="w-full p-2 border border-amber-300 rounded">
         </div>
 
+        <!-- Combined Flooring Type and Cost Dropdown -->
         <div class="mb-4">
-            <label for="flooring_type" class="block text-gray-800">Flooring Type:</label>
-            <input type="text" id="flooring_type" name="flooring_type" required class="w-full p-2 border border-amber-300 rounded">
+            <label for="flooring_option" class="block text-gray-800">Flooring Type and Cost:</label>
+            <select id="flooring_option" name="flooring_option" required class="w-full p-2 border border-amber-300 rounded">
+                <option value="" disabled selected>Select Flooring Type and Cost</option>
+                <option value="Hardwood-5.50">Hardwood - $5.50/sq ft</option>
+                <option value="Laminate-2.25">Laminate - $2.25/sq ft</option>
+                <option value="Tile-3.75">Tile - $3.75/sq ft</option>
+                <option value="Carpet-1.85">Carpet - $1.85/sq ft</option>
+                <!-- Add more options as needed -->
+            </select>
         </div>
 
-        <div class="mb-4">
-            <label for="flooring_cost_per_sqft" class="block text-gray-800">Flooring Cost per Sq Ft:</label>
-            <input type="number" id="flooring_cost_per_sqft" name="flooring_cost_per_sqft" step="0.01" required class="w-full p-2 border border-amber-300 rounded">
-        </div>
+        <!-- Hidden fields to store Flooring Type and Cost separately -->
+        <input type="hidden" id="flooring_type" name="flooring_type">
+        <input type="hidden" id="flooring_cost_per_sqft" name="flooring_cost_per_sqft">
 
         <div class="mb-4">
             <label class="block text-gray-800">Tiling Needed?</label>
@@ -31,15 +38,25 @@
             <label for="is_tiling_needed" class="text-gray-800">Yes</label>
         </div>
 
+        <!-- Tile Details (only if tiling is needed) -->
         <div id="tiling-details" style="display: none;">
+            <!-- Combined Tile Type and Cost Dropdown -->
             <div class="mb-4">
-                <label for="tile_type" class="block text-gray-800">Tile Type:</label>
-                <input type="text" id="tile_type" name="tile_type" class="w-full p-2 border border-amber-300 rounded">
+                <label for="tile_option" class="block text-gray-800">Tile Type and Cost:</label>
+                <select id="tile_option" name="tile_option" class="w-full p-2 border border-amber-300 rounded">
+                    <option value="" disabled selected>Select Tile Type and Cost</option>
+                    <option value="Ceramic-4.00">Ceramic - $4.00/sq ft</option>
+                    <option value="Porcelain-5.50">Porcelain - $5.50/sq ft</option>
+                    <option value="Stone-6.75">Stone - $6.75/sq ft</option>
+                    <option value="Glass-7.20">Glass - $7.20/sq ft</option>
+                    <!-- Add more options as needed -->
+                </select>
             </div>
-            <div class="mb-4">
-                <label for="tile_cost_per_sqft" class="block text-gray-800">Tile Cost per Sq Ft:</label>
-                <input type="number" id="tile_cost_per_sqft" name="tile_cost_per_sqft" step="0.01" class="w-full p-2 border border-amber-300 rounded">
-            </div>
+
+            <!-- Hidden fields to store Tile Type and Cost separately -->
+            <input type="hidden" id="tile_type" name="tile_type">
+            <input type="hidden" id="tile_cost_per_sqft" name="tile_cost_per_sqft">
+
             <div class="mb-4">
                 <label for="tiling_area" class="block text-gray-800">Tiling Area (sq. ft.):</label>
                 <input type="number" id="tiling_area" name="tiling_area" step="0.1" class="w-full p-2 border border-amber-300 rounded">
@@ -53,9 +70,22 @@
 </div>
 
 <script>
-    // show the form if the checkbox is hit
+    // show/hide the tile form
     document.getElementById('is_tiling_needed').addEventListener('change', function () {
         document.getElementById('tiling-details').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // splits the info from the dropdowns
+    document.getElementById('flooring_option').addEventListener('change', function () {
+        const [type, cost] = this.value.split('-');
+        document.getElementById('flooring_type').value = type;
+        document.getElementById('flooring_cost_per_sqft').value = cost;
+    });
+
+    document.getElementById('tile_option').addEventListener('change', function () {
+        const [type, cost] = this.value.split('-');
+        document.getElementById('tile_type').value = type;
+        document.getElementById('tile_cost_per_sqft').value = cost;
     });
 </script>
 {% endblock %}
