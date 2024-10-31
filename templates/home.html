@@ -8,9 +8,26 @@
     <title>Home</title>
 </head>
 <body>
+<!-Home Page:
+•	Lists all the rooms that are being remodeled.
+•	Displays total remodeling costs for each room.
+--!>
+
+
 {% extends 'components/base.html' %}
-<h1>Welcome to the Home Page!</h1>
 {% block content %}
+<h1>Welcome to the Home Page!</h1>
+<h2>Rooms Under Remodeling</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Room Name</th>
+            <th>Surface Area</th>
+            <th>Total Remodeling Cost</th>
+        </tr>
+    </thead>
+</table>
+<a href="{{ url_for('add_room') }}">Add New Room</a>
 {% endblock %}
 
 </body>
