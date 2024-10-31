@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, request, redirect, url_for
-from models.Models import db_session, RoomModel
+from models.Models import db_session, RoomModel, SupplyModel
 
 app = Flask(__name__)
 app.secret_key = "RunCurrentFile"
@@ -74,18 +74,7 @@ def room_details(room_id):
     if room is None:
         return "Room not found", 404
 
-    # Calculate costs
-    total_flooring_cost = room.flooring_cost_per_sqft * room.surface_area
-    total_tile_cost = room.tile_cost_per_sqft * room.tiling_area if room.is_tiling_needed else 0
-    total_supply_cost = sum(supply.total_supply_cost for supply in room.supplies) if room.supplies else 0
-    total_remodel_cost = total_flooring_cost + total_tile_cost + total_supply_cost
-
-    return render_template('room_details.html',
-                           room=room,
-                           total_flooring_cost=total_flooring_cost,
-                           total_tile_cost=total_tile_cost,
-                           total_supply_cost=total_supply_cost,
-                           total_remodel_cost=total_remodel_cost)
+    return render_template('room_details.html', room=room)
 
 @app.route('/delete_room/<int:room_id>', methods=['POST'])
 def delete_room(room_id):
@@ -95,10 +84,30 @@ def delete_room(room_id):
         db_session.commit()
     return redirect(url_for('index'))
 
-@app.route('/supply')
-def supply():
-    return render_template('supply.html')
+@app.route('/add_supplies/<int:room_id>', methods=['GET', 'POST'])
+def add_supply(room_id):
+    room = get_room_by_id(room_id)
+    if room is None:
+        return "Room not found", 404
 
+    if request.method == 'POST':
+        name = request.form['name']
+        quantity = int(request.form['quantity'])
+        cost_per_item = float(request.form['cost_per_item'])
+
+        new_supply = SupplyModel(
+            name=name,
+            quantity=quantity,
+            cost_per_item=cost_per_item,
+            room_id=room_id
+        )
+
+        db_session.add(new_supply)
+        db_session.commit()
+
+        return redirect(url_for('room_details', room_id=room_id))
+
+    return render_template('add_supply.html', room=room)
 @app.route('/supply_details')
 def supply_details():
     return render_template('supply_details.html')
