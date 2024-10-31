@@ -5,7 +5,8 @@ app.secret_key = "RunCurrentFile"
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    rooms = db_session.query(RoomModel).all()
+    return render_template('home.html', rooms=rooms)
 
 
 @app.route('/room')
