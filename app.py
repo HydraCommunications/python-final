@@ -1,10 +1,10 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, session, request, redirect, url_for
+from models.Models import *
 app = Flask(__name__)
-
+app.secret_key = "RunCurrentFile"
 
 @app.route('/')
-def hello_world():
+def index():
     return render_template('home.html')
 
 
