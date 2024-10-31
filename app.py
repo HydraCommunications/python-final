@@ -9,8 +9,36 @@ def index():
     return render_template('home.html', rooms=rooms)
 
 
-@app.route('/room')
-def room():
+@app.route('/add_room', methods=['GET', 'POST'])
+def add_room():
+    if request.method == 'POST':
+        # Get data from form
+        name = request.form['name']
+        surface_area = float(request.form['surface_area'])
+        flooring_type = request.form['flooring_type']
+        flooring_cost_per_sqft = float(request.form['flooring_cost_per_sqft'])
+        is_tiling_needed = 'is_tiling_needed' in request.form
+        tile_type = request.form.get('tile_type') if is_tiling_needed else None
+        tile_cost_per_sqft = float(request.form.get('tile_cost_per_sqft', 0)) if is_tiling_needed else None
+        tiling_area = float(request.form.get('tiling_area', 0)) if is_tiling_needed else None
+
+        # create room model instance
+        new_room = RoomModel(
+            name=name,
+            surface_area=surface_area,
+            flooring_type=flooring_type,
+            flooring_cost_per_sqft=flooring_cost_per_sqft,
+            is_tiling_needed=is_tiling_needed,
+            tile_type=tile_type,
+            tile_cost_per_sqft=tile_cost_per_sqft,
+            tiling_area=tiling_area
+        )
+
+        db_session.add(new_room)
+        db_session.commit()
+
+        return redirect(url_for('index'))
+
     return render_template('room.html')
 
 

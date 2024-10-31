@@ -45,8 +45,6 @@ class SupplyModel(Base):
     room = relationship("RoomModel", back_populates="supplies")
 
 
-# Had to move this down here to create it AFTER the definition. the alchemy project you have out there
-# Doesn't run when it's not like this either.........
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 db_session = Session()

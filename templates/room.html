@@ -1,13 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Room</title>
-</head>
-<body>
-    <h1>Room Page</h1>
-</body>
-</html>
+{% extends 'components/base.html' %}
+
+{% block content %}
+<div class="flex justify-center mt-8">
+    <form action="{{ url_for('add_room') }}" method="POST" class="w-full max-w-lg bg-amber-50 p-8 rounded-xl border-2 border-amber-600 shadow-xl">
+        <h2 class="text-2xl font-semibold text-center text-amber-600 mb-4">Add New Room</h2>
+
+        <div class="mb-4">
+            <label for="name" class="block text-gray-800">Room Name:</label>
+            <input type="text" id="name" name="name" required class="w-full p-2 border border-amber-300 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="surface_area" class="block text-gray-800">Surface Area (sq. ft.):</label>
+            <input type="number" id="surface_area" name="surface_area" step="0.1" required class="w-full p-2 border border-amber-300 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="flooring_type" class="block text-gray-800">Flooring Type:</label>
+            <input type="text" id="flooring_type" name="flooring_type" required class="w-full p-2 border border-amber-300 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="flooring_cost_per_sqft" class="block text-gray-800">Flooring Cost per Sq Ft:</label>
+            <input type="number" id="flooring_cost_per_sqft" name="flooring_cost_per_sqft" step="0.01" required class="w-full p-2 border border-amber-300 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-800">Tiling Needed?</label>
+            <input type="checkbox" id="is_tiling_needed" name="is_tiling_needed" class="mr-2 border border-amber-300">
+            <label for="is_tiling_needed" class="text-gray-800">Yes</label>
+        </div>
+
+        <div id="tiling-details" style="display: none;">
+            <div class="mb-4">
+                <label for="tile_type" class="block text-gray-800">Tile Type:</label>
+                <input type="text" id="tile_type" name="tile_type" class="w-full p-2 border border-amber-300 rounded">
+            </div>
+            <div class="mb-4">
+                <label for="tile_cost_per_sqft" class="block text-gray-800">Tile Cost per Sq Ft:</label>
+                <input type="number" id="tile_cost_per_sqft" name="tile_cost_per_sqft" step="0.01" class="w-full p-2 border border-amber-300 rounded">
+            </div>
+            <div class="mb-4">
+                <label for="tiling_area" class="block text-gray-800">Tiling Area (sq. ft.):</label>
+                <input type="number" id="tiling_area" name="tiling_area" step="0.1" class="w-full p-2 border border-amber-300 rounded">
+            </div>
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit" class="px-4 py-2 bg-amber-600 text-white rounded hover:bg-amber-700">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // show the form if the checkbox is hit
+    document.getElementById('is_tiling_needed').addEventListener('change', function () {
+        document.getElementById('tiling-details').style.display = this.checked ? 'block' : 'none';
+    });
+</script>
+{% endblock %}
