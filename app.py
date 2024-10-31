@@ -10,7 +10,7 @@ def hello_world():
 
 @app.route('/room')
 def room():
-    return render_template('room.html')
+    return render_template('Add room.html')
 
 
 @app.route('/edit_room')
