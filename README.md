@@ -34,6 +34,9 @@ run `python.exe -m pip install --upgrade pip` in terminal
 > tired of writing 700 Billion reused css classes, so tailwind
 > is what I want to do. Again, if the group decides not to, 
 > we can change this.
+> 
+> You'll need to run this while styling, just do it in the integrated terminal.
+> `npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch`
 
 ### Tasks
 
