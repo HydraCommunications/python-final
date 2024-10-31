@@ -1,13 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Room Details</title>
-</head>
-<body>
-    <h1>Room Details Page</h1>
-</body>
-</html>
+{% extends 'components/base.html' %}
+
+{% block content %}
+<div class="flex justify-center mt-8">
+    <div class="w-full max-w-3xl bg-amber-50 p-8 rounded-xl border-2 border-amber-600 shadow-xl">
+        <h2 class="text-2xl font-semibold text-center text-amber-600 mb-4">{{ room.name }}</h2>
+        
+        <div class="space-y-4">
+            <div class="p-4 border border-amber-300 rounded">
+                <h3 class="font-semibold">Flooring Information</h3>
+                <p><strong>Type:</strong> {{ room.flooring_type }}</p>
+                <p><strong>Cost:</strong> ${{ room.flooring_cost_per_sqft }}/sq ft</p>
+                <p><strong>Total Flooring Cost:</strong> ${{ total_flooring_cost }}</p>
+            </div>
+
+            {% if room.is_tiling_needed %}
+            <div class="p-4 border border-amber-300 rounded">
+                <h3 class="font-semibold">Tiling Information</h3>
+                <p><strong>Tiling Area:</strong> {{ room.tiling_area }} sq ft</p>
+                <p><strong>Tile Cost:</strong> ${{ room.tile_cost_per_sqft }}/sq ft</p>
+                <p><strong>Total Tile Cost:</strong> ${{ total_tile_cost }}</p>
+            </div>
+            {% endif %}
+
+            <div class="p-4 border border-amber-300 rounded">
+                <h3 class="font-semibold">Supplies</h3>
+                <ul class="list-disc pl-6">
+                    {% for supply in room.supplies %}
+                    <li>
+                        <strong>{{ supply.name }}</strong>: ${{ supply.total_supply_cost }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <p><strong>Total Supply Costs:</strong> ${{ total_supply_cost }}</p>
+            </div>
+
+            <div class="p-4 border border-amber-300 rounded">
+                <h3 class="font-semibold">Total Remodeling Cost</h3>
+                <p><strong>Total Remodeling Cost:</strong> ${{ total_remodel_cost }}</p>
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-6">
+            <a href="/edit_rooms/{{ room.id }}" class="px-4 py-2 bg-amber-600 text-white rounded hover:bg-amber-700">Edit Room</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

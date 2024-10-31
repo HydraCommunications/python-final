@@ -38,9 +38,7 @@
             <label for="is_tiling_needed" class="text-gray-800">Yes</label>
         </div>
 
-        <!-- Tile Details (only if tiling is needed) -->
         <div id="tiling-details" style="display: none;">
-            <!-- Combined Tile Type and Cost Dropdown -->
             <div class="mb-4">
                 <label for="tile_option" class="block text-gray-800">Tile Type and Cost:</label>
                 <select id="tile_option" name="tile_option" class="w-full p-2 border border-amber-300 rounded">
@@ -49,11 +47,9 @@
                     <option value="Porcelain-5.50">Porcelain - $5.50/sq ft</option>
                     <option value="Stone-6.75">Stone - $6.75/sq ft</option>
                     <option value="Glass-7.20">Glass - $7.20/sq ft</option>
-                    <!-- Add more options as needed -->
                 </select>
             </div>
 
-            <!-- Hidden fields to store Tile Type and Cost separately -->
             <input type="hidden" id="tile_type" name="tile_type">
             <input type="hidden" id="tile_cost_per_sqft" name="tile_cost_per_sqft">
 

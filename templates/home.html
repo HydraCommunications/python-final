@@ -38,6 +38,11 @@
                     </h3>
                 </div>
             </div>
+            <div class="flex justify-center mt-4">
+                <a href="{{ url_for('room_details', room_id=room.id) }}" class="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-800 transition">
+                    View Details
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>
