@@ -2,12 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Room Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - {{ room.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Room Details Page</h1>
+    <h1>Room details: {{ room.name }}</h1>
+    <h2>Flooring Information</h2>
+    <p><strong>Type:</strong> {{ room.flooring_type }}</p>
+    <p><strong>Cost per Sq Ft:</strong> ${{ room.flooring_cost_per_sqft }}</p>
+    <p><strong>Total Flooring Cost:</strong> ${{ room.total_flooring_cost }}</p>
+
+    <h2>Supply Costs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Supply Name</th>
+                <th>Quantity</th>
+                <th>Cost per Item</th>
+                <th>Total Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supply in room.supplies %}
+            <tr>
+                <td>{{ supply.name }}</td>
+                <td>{{ supply.quantity }}</td>
+                <td>${{ supply.cost_per_item }}</td>
+                <td>${{ supply.total_supply_cost }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Total Remodeling Cost</h2>
+    <p><strong>total xcost:</strong> ${{ room.total_remodel_cost }}</p>
+
+    <a href="{{ url_for('edit_room', room_id=room.id) }}">edit room</a>
+    <a href="{{ url_for('home') }}">Back to Home</a>
 </body>
 </html>
