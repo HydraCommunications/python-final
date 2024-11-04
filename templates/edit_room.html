@@ -2,30 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Room</title>
 </head>
 <body>
-    <h1>Edit Your Room Page</h1>
-    <h1>Edit Room: {{ room.name }}</h1>
+    {% extends 'components/base.html' %}
+    {% block content %}
+        <h1>Edit Room: {{ room.name }}</h1>
         <form method="POST">
             <div>
-                <label for="name">room Name:</label>
+                <label for="name">Room Name:</label>
                 <input type="text" id="name" name="name" value="{{ room.name }}" required>
             </div>
             <div>
-                <label for="surface_area">surface area:</label>
+                <label for="surface_area">Surface Area:</label>
                 <input type="number" id="surface_area" name="surface_area" value="{{ room.surface_area }}" required>
             </div>
             <div>
-                <label for="flooring_type">flooring type:</label>
+                <label for="flooring_type">Flooring Type:</label>
                 <input type="text" id="flooring_type" name="flooring_type" value="{{ room.flooring_type }}" required>
             </div>
             <div>
-                <label for="flooring_cost_per_sqft">cost:</label>
+                <label for="flooring_cost_per_sqft">Cost per Sq Ft:</label>
                 <input type="number" step="0.01" id="flooring_cost_per_sqft" name="flooring_cost_per_sqft" value="{{ room.flooring_cost_per_sqft }}" required>
             </div>
+            <button type="submit">Save Changes</button>
+        </form>
+    {% endblock %}
 </body>
 </html>

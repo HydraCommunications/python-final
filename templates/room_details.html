@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Room details: {{ room.name }}</h1>
+    {% extends 'components/base.html' %}
+    {% block content %}
+    <h1>Room Details: {{ room.name }}</h1>
     <h2>Flooring Information</h2>
     <p><strong>Type:</strong> {{ room.flooring_type }}</p>
     <p><strong>Cost per Sq Ft:</strong> ${{ room.flooring_cost_per_sqft }}</p>
@@ -36,9 +38,10 @@
     </table>
 
     <h2>Total Remodeling Cost</h2>
-    <p><strong>total xcost:</strong> ${{ room.total_remodel_cost }}</p>
+    <p><strong>Total Cost:</strong> ${{ room.total_remodel_cost }}</p>
 
-    <a href="{{ url_for('edit_room', room_id=room.id) }}">edit room</a>
-    <a href="{{ url_for('home') }}">Back to Home</a>
+    <a href="{{ url_for('main.edit_room', room_id=room.id) }}">Edit Room</a>
+    <a href="{{ url_for('main.home') }}">Back to Home</a>
+    {% endblock %}
 </body>
 </html>
