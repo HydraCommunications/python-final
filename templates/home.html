@@ -6,29 +6,29 @@
     <title>Home</title>
 </head>
 <body>
-    {% extends 'components/base.html' %}
     {% block content %}
     <h1>Welcome to the Home Page!</h1>
     <h2>Rooms Under Remodeling</h2>
     <table>
         <thead>
             <tr>
-                <th>Room Name</th>
-                <th>Surface Area</th>
-                <th>Total Remodeling Cost</th>
+                <th>the room name??</th>
+                <th>surface area??</th>
+                <th>total cost for the whole project??</th>
+            </tr>
+            <tr>
+                <th>the room name??</th>
+                <th>surface area??</th>
+                <th>total cost for the whole project??</th>
             </tr>
         </thead>
-        <tbody>
-            {% for room in rooms %}
-            <tr>
-                <td><a href="{{ url_for('main.room_details', room_id=room.id) }}">{{ room.name }}</a></td>
-                <td>{{ room.surface_area }}</td>
-                <td>${{ room.total_remodel_cost }}</td>
+        <tr>
+            <td><a href="{{ url_for('room_details.html', room.html) }}">{{ room.name }}</a></td>
+            <td>{{ room.surface_area }}</td>
+            <td>${{ room.total_remodel_cost }}</td>
             </tr>
-            {% endfor %}
-        </tbody>
     </table>
-    <a href="{{ url_for('main.add_room') }}">Add New Room</a>
+    <a href="{{ url_for('room.html') }}">add a new room</a>
     {% endblock %}
 </body>
 </html>

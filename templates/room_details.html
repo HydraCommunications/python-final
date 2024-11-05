@@ -3,45 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Details - {{ room.name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Room details - {{ room.name }}</title>
 </head>
 <body>
-    {% extends 'components/base.html' %}
     {% block content %}
-    <h1>Room Details: {{ room.name }}</h1>
-    <h2>Flooring Information</h2>
-    <p><strong>Type:</strong> {{ room.flooring_type }}</p>
-    <p><strong>Cost per Sq Feet:</strong> ${{ room.flooring_cost_per_sqft }}</p>
-    <p><strong>Total Flooring Cost:</strong> ${{ room.total_flooring_cost }}</p>
+    <h1>room details: {{ room.name }}</h1>
+    <h2>flooring information</h2>
 
-    <h2>Supply Costs</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Supply Name</th>
-                <th>Quantity</th>
-                <th>Cost per Item</th>
-                <th>Total Cost</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for supply in room.supplies %}
-            <tr>
-                <td>{{ supply.name }}</td>
-                <td>{{ supply.quantity }}</td>
-                <td>${{ supply.cost_per_item }}</td>
-                <td>${{ supply.total_supply_cost }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <p>floor type: {{ room.flooring_type }}</p>
+    <p>cost per feet: ${{ room.flooring_cost_per_ft }}</p>
+    <p>total flooring cost: ${{ room.total_flooring_cost }}</p>
 
-    <h2>Total Remodeling Cost</h2>
-    <p><strong>Total Cost:</strong> ${{ room.total_remodel_cost }}</p>
+    <h2>total cost</h2>
+    <p>total cost: ${{ room.total_remodel_cost }}</p>
 
-    <a href="{{ url_for('main.edit_room', room_id=room.id) }}">Edit Room</a>
-    <a href="{{ url_for('main.home') }}">Back to Home</a>
+    <a href="{{ url_for('edit_room.html', room.html) }}">Edit Room</a>
+    <a href="{{ url_for('home.html') }}">Back to Home</a>
     {% endblock %}
 </body>
 </html>

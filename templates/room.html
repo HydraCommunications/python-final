@@ -6,21 +6,20 @@
     <title>Add New Room</title>
 </head>
 <body>
-    {% extends 'components/base.html' %}
     {% block content %}
-        <h1>Add New Room</h1>
+        <h1>Add a new room</h1>
         <form method="POST">
-            <label for="room-name">Room Name:</label>
+            <label for="room-name">room name:</label>
             <input type="text" id="room-name" name="room_name" required>
 
-            <label for="surface-area">Surface Area:</label>
+            <label for="surface-area">surface area:</label>
             <input type="number" id="surface-area" name="surface_area" required>
 
-            <label for="flooring-type">Flooring Type:</label>
+            <label for="flooring-type">flooring type:</label>
             <input type="text" id="flooring-type" name="flooring_type" required>
 
-            <label for="flooring-cost">Cost per Sq Feett:</label>
-            <input type="number" step="0.01" id="flooring-cost" name="flooring_cost" required>
+            <label for="flooring_cost_per_ft">cost per feet:</label>
+            <input type="number" id="flooring_cost_per_ft" name="flooring_cost_per_ft" required>
 
             <button type="submit">Add Room</button>
         </form>
