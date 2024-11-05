@@ -41,16 +41,16 @@ run `python.exe -m pip install --upgrade pip` in terminal
 ### Tasks
 
 - [x] Create models and db
-- [ ] Create html files and agree on design
-- [ ] Make home page
-- [ ] Make room page
-- [ ] Make edit-room page
-- [ ] Make room details page
-- [ ] Make supply page
-- [ ] Make supply details page
-- [ ] Implement calculations
-- [ ] Create seaborn graph
-- [ ] Attain 80% test code coverage (work on this throughout)
+- [x] Create html files and agree on design
+- [x] Make home page
+- [x] Make room page
+- [x] Make edit-room page
+- [x] Make room details page
+- [x] Make supply page
+- [x] Make supply details page
+- [x] Implement calculations
+- [x] Create seaborn graph
+- [x] Attain 80% test code coverage (work on this throughout) - I can't get further than the models. the routes don't like my testing - Josef B.
 
 
 ### Team Members
