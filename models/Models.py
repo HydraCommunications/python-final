@@ -32,6 +32,13 @@ class RoomModel(Base):
     # relationship definition
     supplies = relationship("SupplyModel", back_populates="room")
 
+    def calculate_total_cost(self):
+        flooring_cost = self.surface_area * self.flooring_cost_per_sqft
+        tiling_cost = (self.tiling_area * self.tile_cost_per_sqft) \
+            if self.is_tiling_needed else 0
+            # worst ternary format ever btw
+        return round(flooring_cost + tiling_cost, 2)
+
 class SupplyModel(Base):
     __tablename__ = 'supplies'
 

@@ -7,7 +7,10 @@ app.secret_key = "RunCurrentFile"
 @app.route('/')
 def index():
     rooms = db_session.query(RoomModel).all()
+    for room in rooms:
+        room.total_cost_calculated = room.calculate_total_cost()
     return render_template('home.html', rooms=rooms)
+
 
 @app.route('/add_room', methods=['GET', 'POST'])
 def add_room():
