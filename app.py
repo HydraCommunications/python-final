@@ -1,15 +1,34 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from models.Models import db_session, RoomModel, SupplyModel
+import seaborn as sns
+import matplotlib.pyplot as plt
+import os
 
 app = Flask(__name__)
 app.secret_key = "RunCurrentFile"
+
+room_name_list = []
+room_total_cost_list = []
 
 @app.route('/')
 def index():
     rooms = db_session.query(RoomModel).all()
     for room in rooms:
         room.total_cost_calculated = room.calculate_total_cost()
-    return render_template('home.html', rooms=rooms)
+
+        room_name_list.append(room.name)
+        room_total_cost_list.append(room.total_cost_calculated)
+
+        plt.figure(figsize=(8, 8))
+        sns.barplot(x=room_name_list, y=room_total_cost_list, palette="viridis")
+
+        plt.xticks(rotation=25, ha="right")
+
+        img_path = os.path.join(app.static_folder, 'plot.png')
+        plt.savefig(img_path)
+        plt.close()
+
+    return render_template('home.html', rooms=rooms, plot_url=url_for("static", filename="plot.png"))
 
 
 @app.route('/add_room', methods=['GET', 'POST'])

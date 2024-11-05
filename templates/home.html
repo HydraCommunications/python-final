@@ -1,8 +1,7 @@
 {% extends 'components/base.html' %}
 
 {% block content %}
-
-<div class="flex align-center justify-center">
+<div class="flex flex-col items-center justify-center w-full">
     <div class="w-11/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {% for room in rooms %}
         <div class="rounded-xl p-4 bg-amber-50 border-2 border-amber-600 shadow-xl">
@@ -44,5 +43,7 @@
         {% endfor %}
     </div>
 </div>
-
+    <div class="w-full flex justify-center items-center flex-col">
+        <img src="{{ plot_url }}" alt="Cost Analysis Graph" class="h-auto"/>
+    </div>
 {% endblock %}
