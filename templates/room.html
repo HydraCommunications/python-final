@@ -15,7 +15,6 @@
             <input type="number" id="surface_area" name="surface_area" step="0.1" required class="w-full p-2 border border-amber-300 rounded">
         </div>
 
-        <!-- Combined Flooring Type and Cost Dropdown -->
         <div class="mb-4">
             <label for="flooring_option" class="block text-gray-800">Flooring Type and Cost:</label>
             <select id="flooring_option" name="flooring_option" required class="w-full p-2 border border-amber-300 rounded">
@@ -24,11 +23,9 @@
                 <option value="Laminate-2.25">Laminate - $2.25/sq ft</option>
                 <option value="Tile-3.75">Tile - $3.75/sq ft</option>
                 <option value="Carpet-1.85">Carpet - $1.85/sq ft</option>
-                <!-- Add more options as needed -->
             </select>
         </div>
 
-        <!-- Hidden fields to store Flooring Type and Cost separately -->
         <input type="hidden" id="flooring_type" name="flooring_type">
         <input type="hidden" id="flooring_cost_per_sqft" name="flooring_cost_per_sqft">
 

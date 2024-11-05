@@ -89,21 +89,59 @@ def update_room(room_id):
 
     return redirect(url_for('index'))
 
+
 @app.route('/room_details/<int:room_id>')
 def room_details(room_id):
-    room = get_room_by_id(room_id)
+    #these need to be broken into methods but I'm sleepy so no. Screw test code anyway.
+    room = db_session.query(RoomModel).filter(RoomModel.id == room_id).first()
 
     if room is None:
         return "Room not found", 404
 
-    return render_template('room_details.html', room=room)
+    # flooring crap
+    total_flooring_cost = round(room.surface_area * room.flooring_cost_per_sqft, 2)
+
+    # tiling crap
+    total_tile_cost = 0
+    if room.is_tiling_needed and room.tiling_area and room.tile_cost_per_sqft:
+        total_tile_cost = round(room.tiling_area * room.tile_cost_per_sqft, 2)
+
+    # costs total things
+    total_supply_cost = 0
+    if room.supplies:
+        for supply in room.supplies:
+            supply.total_supply_cost = round(supply.quantity * supply.cost_per_item, 2)
+            total_supply_cost += supply.total_supply_cost
+
+    # total remodel cost
+    total_remodel_cost = round(total_flooring_cost + total_tile_cost + total_supply_cost, 2)
+
+    return render_template(
+        'room_details.html',
+        room=room,
+        total_flooring_cost=total_flooring_cost,
+        total_tile_cost=total_tile_cost,
+        total_supply_cost=total_supply_cost,
+        total_remodel_cost=total_remodel_cost
+    )
+
 
 @app.route('/delete_room/<int:room_id>', methods=['POST'])
 def delete_room(room_id):
-    room_to_delete = db_session.query(RoomModel).filter_by(id=room_id).first()
-    if room_to_delete:
-        db_session.delete(room_to_delete)
-        db_session.commit()
+    try:
+        room_to_delete = db_session.query(RoomModel).filter_by(id=room_id).first()
+        if room_to_delete:
+            # delete all supplies related to room
+            db_session.query(SupplyModel).filter_by(room_id=room_id).delete()
+
+            # delete room
+            db_session.delete(room_to_delete)
+            db_session.commit()
+            return redirect(url_for('index'))
+    except Exception as e:
+        db_session.rollback() # rollback db in case of oopsies
+        return redirect(url_for('index'))
+
     return redirect(url_for('index'))
 
 @app.route('/add_supplies/<int:room_id>', methods=['GET', 'POST'])

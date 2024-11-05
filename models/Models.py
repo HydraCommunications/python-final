@@ -30,7 +30,7 @@ class RoomModel(Base):
     tiling_area = Column(Float, nullable=True)
 
     # relationship definition
-    supplies = relationship("SupplyModel", back_populates="room")
+    supplies = relationship("SupplyModel", back_populates="room", cascade="all, delete-orphan")
 
     def calculate_total_cost(self):
         flooring_cost = self.surface_area * self.flooring_cost_per_sqft
